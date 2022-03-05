@@ -117,7 +117,7 @@ document.getElementById("search")!.addEventListener("keyup",function(this:HTMLIn
      
       }
       else{
-          outputString+=element.innerHTML[index];
+          outputString += element.innerHTML[index];
           index++
       }
       
