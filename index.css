@@ -10,11 +10,21 @@ body {
   background-size: cover;
   padding: 0 20rem;
   color: white;
+  font-family: 'Roboto', sans-serif;
+}
+.ml{
+  margin-left: 2rem;
 }
 a {
   text-decoration: none !important;
   color: white ;
   font-size: 1em !important;
+}
+.d-none{
+  display: none;
+}
+.d-inline-block{
+  display: inline-block;
 }
 .mt-1{
   margin-top: 2rem;
@@ -25,7 +35,9 @@ a {
 .mb-2{
   margin-bottom: 4rem;
 }
-
+.pr{
+  padding-right: 100px;
+}
 .d-flex{
   display: flex;
 }
@@ -80,6 +92,9 @@ header > div{
   padding: 1rem;
   flex-wrap: wrap;
 }
+header span{
+  color: white;
+}
 header > div a {
   font: 1rem "Roboto", sans-serif;
   text-transform: uppercase;
@@ -117,16 +132,41 @@ table, th, td {
 }
 td,th{
   padding: 10px;
+  position: relative;
+}
+input[type=checkbox]:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 10px;
+  left: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,0.1);
 }
 input[type=checkbox]{
-  appearance: none;
-  border: 1px solid white;
-  width: 20px;
-  height: 20px;
+ appearance: none;
 }
-input[type=checkbox]:checked{
-  background-color: aqua;
+input[type=checkbox]:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 12px;
+  left: 16px;
 }
 .me-1{
   margin-right:1rem;
+}
+.bg-blue{
+  background-color: #084594;
+  color: white;
 }

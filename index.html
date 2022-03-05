@@ -4,12 +4,15 @@
     <link rel="stylesheet" href="index.css" /
     <meta charset="UTF-8" />
     <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
       <div class="relative-min-h-5">
         <nav>
           <a href="">&nbsp Request a Quote &nbsp|&nbsp</a>
-          <a href="">Client Login &nbsp|&nbsp</a>
+          <a href="">Client Login  &nbsp|&nbsp</a>
           <a href="">Vehicle Export Portal &nbsp</a>
         </nav>
       </div>
@@ -17,17 +20,17 @@
           <div>
               <img src="images/logo.png" alt="" class="absolute-left-4" />
               <nav>
-                <a href="">&nbsp Home &nbsp |&nbsp</a>
-                <a href="">&nbsp about ftzws &nbsp|&nbsp</a>
-                <a href="service.html" >&nbsp our services &nbsp |&nbsp</a>
-                <a href="">&nbsp our client &nbsp|&nbsp</a>
+                <a href="">&nbsp Home <span> &nbsp |&nbsp </span></a>
+                <a href="">&nbsp about ftzws <span> &nbsp|&nbsp </span> </a>
+                <a href="service.html" >&nbsp our services <span> &nbsp |&nbsp</span> </a>
+                <a href="">&nbsp our client <span> &nbsp|&nbsp </span></a>
                 <a href="">&nbsp Contact Us &nbsp</a>
               </nav>
           </div>
       </header>
       <main class="mt-1 bg-black-op7 p-1">
         <div class="d-flex jus-con-end">
-          <input type="text" placeholder="search" id="search" class="mt-1">
+          <input type="text" placeholder="search" id="search" class="mt-1 p-7">
         </div>
         <table class="mt-1">
           <tr>
@@ -35,33 +38,45 @@
             <th>Name</th>
             <th><b>Score</b></th>
             <th><b>Email</b></th>
-            <th></th>
+            <th class="pr"></th>
           </tr>
           <tr>
             <td><input type="checkbox"></td>
             <td>Vijaya</td>
             <td>40</td>
             <td>Vijay@gmail.com</td>
-            <td></td>
+            <td class="pr"></td>
           </tr>
           <tr>
             <td><input type="checkbox"></td>
             <td>sashi</td>
             <td>40</td>
             <td>shashi@gmail.com</td>
-            <td></td>
+            <td class="pr"></td>
           </tr>
           <tr>
             <td><input type="checkbox"></td>
             <td>sashi</td>
             <td>50</td>
             <td>shashi1@gmail.com</td>
-            <td></td>
+            <td class="pr"></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>sanjay</td>
+            <td>20</td>
+            <td>sanjay1@gmail.com</td>
+            <td class="pr"></td>
           </tr>
         </table>
-        <button id="max">ab</button>
-        <button id="sum">bc </button>
+        <div class="d-flex mt-1">
+          <button class="bg-blue" id="calculate">calculate</button>
+          <span id="max" class="ml d-none"></span>
+          <span id="sum" class="ml d-none"></span>
+        </div>
+        
       </main>
+
       <footer class="mt-1">
         <p class="p-7">Copyright &copy 2010 FTZ World Services. All rights reserved. <a href="" class="underline">Contact Us</a>&nbsp|&nbsp <a href="" class="underline">Request a Quote</a>
         </p>

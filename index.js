@@ -2,7 +2,7 @@
 let grid = {
     counter: 0,
     map: new Map(),
-    length: 3,
+    length: 4,
     getInputBoxes: () => Array.from(document.querySelectorAll("input[type=checkbox]")).splice(1),
     getScores: function () { return Array.from(this.map.values()); },
     getChildren: () => Array.from(document.querySelectorAll("tr:not(:first-child)>:nth-child(even)"))
@@ -40,32 +40,52 @@ document.getElementById("main-check-box").addEventListener('click', function (ev
         grid.counter = 0;
     }
 });
-//find max
-document.getElementById("max").addEventListener('click', (event) => {
-    let max = event.target;
-    max.innerHTML = grid.getScores().reduce((aggregate, current) => {
+document.getElementById("calculate").addEventListener('click', (event) => {
+    //find max
+    let max = document.getElementById("max");
+    max.innerHTML = "Max is " + grid.getScores().reduce((aggregate, current) => {
         if (current > aggregate)
             return current;
         return aggregate;
     }, 0).toString();
-});
-//find sum
-document.getElementById("sum").addEventListener('click', (event) => {
-    let sum = event.target;
-    sum.innerHTML = grid.getScores().reduce((aggregate, current) => {
+    max.style.display = "block";
+    //find sum
+    let sum = document.getElementById("sum");
+    sum.innerHTML = "sum is " + grid.getScores().reduce((aggregate, current) => {
         return aggregate + current;
     }, 0).toString();
+    sum.style.display = "block";
 });
 //search 
 document.getElementById("search").addEventListener("keyup", function (event) {
     grid.getChildren().forEach((element) => {
         element.innerHTML = element.innerText.replaceAll(" ", "");
     });
-    let element = grid.getChildren()[0];
-    let re = new RegExp(`${this.value}`, "g");
-    console.log(element.innerHTML.search(re));
-    /*grid.getChildren().forEach((element) => {
-        let re = new RegExp(`${this.value}`, "g");
-        element.innerHTML.search(re)
-    });*/
+    if (!this.value)
+        return;
+    grid.getChildren().forEach((element) => {
+        let re = new RegExp(`${this.value}`, "gi");
+        let array = [], index;
+        while (index = re.exec(element.innerHTML))
+            array.push(index.index);
+        let outputString = "";
+        index;
+        index = 0;
+        while (index < element.innerHTML.length && array.length) {
+            if (index === array[0]) {
+                outputString += "<mark>" + element.innerHTML.substr(index, this.value.length) + "</mark>";
+                index += this.value.length;
+                array.shift();
+            }
+            else {
+                outputString += element.innerHTML[index];
+                index++;
+            }
+        }
+        while (index < element.innerHTML.length) {
+            outputString += element.innerHTML[index];
+            index++;
+        }
+        element.innerHTML = outputString;
+    });
 });

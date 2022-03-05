@@ -11,7 +11,7 @@ interface Grid{
 let grid : Grid = {
   counter : 0,
   map : new Map(),
-  length : 3,
+  length : 4,
   getInputBoxes : () => Array.from(document.querySelectorAll("input[type=checkbox]")).splice(1,) as HTMLInputElement[] ,
 
   getScores : function(){ return Array.from(this.map.values()) } ,
@@ -63,26 +63,28 @@ document.getElementById("main-check-box")!.addEventListener('click',function(thi
 });
 
 
-//find max
-document.getElementById("max")!.addEventListener('click',(event)=>{
-    let max = event.target as HTMLElement;
+document.getElementById("calculate")!.addEventListener('click',(event)=>{
 
-    max.innerHTML = grid.getScores().reduce((aggregate: number , current : number)=>{
-        if(current>aggregate)
-          return current;
-        return aggregate;
-    },0).toString();
-})
+  //find max
+  let max = document.getElementById("max")! as HTMLElement;
 
-//find sum
-document.getElementById("sum")!.addEventListener('click',(event)=>{
-  let sum = event.target as HTMLElement
+  max.innerHTML ="Max is "+grid.getScores().reduce((aggregate: number , current : number)=>{
+      if(current>aggregate)
+        return current;
+      return aggregate;
+  },0).toString();
 
-  sum.innerHTML=grid.getScores().reduce((aggregate: number , current : number)=>{
+  max.style.display="block";
+
+  //find sum
+  let sum = document.getElementById("sum")! as HTMLElement
+
+  sum.innerHTML="sum is "+grid.getScores().reduce((aggregate: number , current : number)=>{
       return aggregate+current;
-  },0).toString()
-
-})
+  },0).toString();
+  sum.style.display="block";
+});
+    
 
 
 //search 
@@ -91,12 +93,39 @@ document.getElementById("search")!.addEventListener("keyup",function(this:HTMLIn
   grid.getChildren().forEach( (element: HTMLElement) => {
     element.innerHTML = element.innerText.replaceAll(" ","");
   });
+  
+  if(!this.value)
+    return 
 
-  let element=grid.getChildren()[0]
-    let re = new RegExp(`${this.value}`, "g");
-    console.log(element.innerHTML.search(re));
-    /*grid.getChildren().forEach((element) => {
-        let re = new RegExp(`${this.value}`, "g");
-        element.innerHTML.search(re)
-    });*/
+  grid.getChildren().forEach((element: HTMLInputElement) =>{
+
+    let re = new RegExp(`${this.value}`, "gi");
+    let array=[],index;
+
+    while(index=re.exec(element.innerHTML) as RegExpExecArray)
+        array.push(index.index);
+
+    let outputString:string="";
+    index as number; index=0; 
+
+    while(index<element.innerHTML.length && array.length){
+      if(index===array[0]){
+
+        outputString+="<mark>"+element.innerHTML.substr(index,this.value.length)+"</mark>"
+        index+=this.value.length
+        array.shift()
+     
+      }
+      else{
+          outputString+=element.innerHTML[index];
+          index++
+      }
+      
+    }
+    while(index<element.innerHTML.length){
+      outputString+=element.innerHTML[index]
+      index++
+    }
+    element.innerHTML=outputString;
+    });
 });
